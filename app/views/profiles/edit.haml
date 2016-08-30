@@ -1,0 +1,19 @@
+%br
+%br
+= form_for(@profile, url: profile_path, method: :put) do |f|
+  = f.text_field :user_name, class: "blacktext"
+  %br
+  %br
+  = f.text_field :sex, class: "blacktext"
+  %br
+  %br
+  = f.text_field :website, class: "blacktext"
+  %br
+  %br
+  = f.text_field :status, class: "blacktext"
+  %br
+  %br
+  = f.text_field :image_url, class: "blacktext"
+  %br
+  %br
+  = f.submit "Post", class: "btn btn-large btn-default"

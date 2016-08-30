@@ -1,15 +1,13 @@
 .col-xs-12.redbg.nopadding
   %h2.text-center
-    %a.white{:href => main_home_path, id:"main"} Quora Slimmer & Better
+    %a.white{:href => home_path, id:"main"} Quora Slimmer & Better
     .dropposition
       %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
         Hello
         = current_user.name
         %span.fa.fa-angle-double-down
       %ul.dropdown-menu
-        -#%li
-          -#%a{:href => signout_path, id:"sign_out"} HTML
-        -#%li
-          -#%a{:href => "#"} CSS
+        %li
+          %a{:href => profile_path(:id => current_user.id) } View Profile
         %li
           = link_to "Sign out", session_path(current_user), {'data-method'=> 'delete', 'rel' => 'nofollow'}

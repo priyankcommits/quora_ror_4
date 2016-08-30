@@ -1,0 +1,15 @@
+%br
+%br
+= form_for(@comment, url: question_answer_comments_path) do |f|
+  = f.label "Please Enter a Comment for", class: "comment"
+  %span.comment
+    "
+    = @answer.text
+    "
+  %br
+  %br
+  = f.text_area :text, placeholder: "Please enter a comment", class: "blacktext"
+  %br
+  %br
+  %br
+  = f.submit "Post", class: "btn btn-large btn-default"

@@ -1,0 +1,43 @@
+.col-lg-6
+  %h3.bluetext
+    %span.fa.fa-male
+      %b
+        = @profile.user_name
+  %table
+    %tbody
+      %tr
+        %td{:colspan => "15"}
+          %img.img-circle{:src => @profile.image_url }/
+      %tr
+        %td{:colspan => "15"}
+          %h5.bluetext
+            "
+            = @profile.status
+            "
+      %tr
+        %td{:colspan => "15"}
+          %h5
+            %a.custom{:href => @profile.website, :target => "_blank"}
+              Website:
+              = @profile.website
+      %tr
+        %td{:colspan => "5"}
+          %h5.blacktext= @profile.user_name
+      %tr
+        %td{:colspan => "15"}
+          %a.btn.btn-default{:href => edit_profile_path(@profile.uid), :role => "button"} Edit
+.col-lg-6
+  %h3.bluetext
+    Topics followed:
+  - @user_topics.each do |user_topic|
+    %a.bliuetext.btn.btn-default{:href => topic_path(user_topic.id), :role => "button"}
+      = user_topic.topic.name
+    %br
+  %h3.bluetext
+    Users followed:
+  - @user_follows.each do |user_follow|
+    %a.bliuetext.btn.btn-default{:href => profile_path(user_follow.following_id), :role => "button"}
+      = user_follow.following.name
+    %br
+
+

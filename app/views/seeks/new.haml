@@ -1,0 +1,10 @@
+%br
+%br
+= form_for(@notification, url: question_seeks_path) do |f|
+  = f.label "Please Select a User", class: "redtext"
+  %br
+  %br
+  = f.collection_select(:id, User.all, :id, :name)
+  %br
+  %br
+  = f.submit "Post", class: "btn btn-large btn-default"

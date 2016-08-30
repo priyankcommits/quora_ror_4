@@ -5,10 +5,11 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :string
+#  topic_id   :string
 #
 
 class UserTopics < ActiveRecord::Base
-  # attr_accessible :title, :body
-  belongs_to :users
-  belongs_to :topics
+  belongs_to :user
+  belongs_to :topic
 end

@@ -1,0 +1,19 @@
+%br
+%br
+= form_for(@answer, url: question_answers_path) do |f|
+  = f.label "Please Enter an Answer for", class: "answertext"
+  %span.answertext
+    "
+    = @question.text
+    "
+  %br
+  %br
+  = f.text_area :text, placeholder: "Please enter an answer", class: "blacktext"
+  %br
+  %br
+  = f.label "Image URL:", class: "answertext"
+  %br
+  = f.text_field :image_url, placeholder: "Enter a URL", class: "blacktext"
+  %br
+  %br
+  = f.submit "Post", class: "btn btn-large btn-default"

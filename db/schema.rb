@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829080831) do
+ActiveRecord::Schema.define(version: 20160830134838) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "text"
@@ -36,8 +36,11 @@ ActiveRecord::Schema.define(version: 20160829080831) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "type"
     t.boolean  "read"
+    t.string   "not_type"
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.string   "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,6 +62,13 @@ ActiveRecord::Schema.define(version: 20160829080831) do
     t.datetime "updated_at"
   end
 
+  create_table "user_follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.string "user_name"
     t.string "sex"
@@ -71,6 +81,8 @@ ActiveRecord::Schema.define(version: 20160829080831) do
   create_table "user_topics", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_id"
+    t.string   "topic_id"
   end
 
   create_table "users", force: :cascade do |t|

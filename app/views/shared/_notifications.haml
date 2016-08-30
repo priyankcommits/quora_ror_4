@@ -1,0 +1,35 @@
+%h4.bluetext
+  Unread
+  - @new_notifications.each do |new_notification|
+    %a.bluetext{:href => question_path(:id => new_notification.question.id)}
+      %h5.bluetext
+        - if new_notification.not_type.to_s == "1"
+          Answer written by
+          = new_notification.from.name
+          for "
+          = new_notification.question.text
+          "
+        - if new_notification.not_type.to_s == "2"
+          Answer seeked by
+          = new_notification.from.name
+          for "
+          = new_notification.question.text
+          "
+
+%h4.blacktext
+  Read
+  - @old_notifications.each do |old_notification|
+    %a.blacktext{:href => question_path(:id => old_notification.question.id)}
+      %h5.blacktext
+        - if old_notification.not_type.to_s == "1"
+          Answer written by
+          = old_notification.from.name
+          for "
+          = old_notification.question.text
+          "
+        - if old_notification.not_type.to_s == "2"
+          Answer seeked by
+          = old_notification.from.name
+          for "
+          = old_notification.question.text
+          "

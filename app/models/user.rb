@@ -13,6 +13,7 @@
 #
 
 class User < ActiveRecord::Base
+  has_one :user_profile
   has_many :questions
   has_many :answers
   has_many :topics, :through => :user_topics
@@ -25,6 +26,9 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
+      user_profile = UserProfile.where(uid: user.id).first_or_create
+      user_profile.user_name = auth.info.name
+      user_profile.save!
     end
   end
 end

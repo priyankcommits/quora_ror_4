@@ -1,0 +1,5 @@
+%h3.bluetext
+  %b Topics
+  -@topics.each do |topic|
+    %h5.bluetext
+      %a.custom{:href => topic_path(:id => topic.id)}= topic.name

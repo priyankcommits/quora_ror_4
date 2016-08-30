@@ -3,20 +3,21 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-  #get 'signout', to: 'sessions#destroy', as: 'signout'
-  #get 'main', to: 'home#main', as: 'main'
-  get 'question/:id', to: 'home#view_question', as: 'view_question'
-  get '/topic/:id', to: 'home#view_topic', as: 'view_topic'
-  get '/profile/:id', to: 'profile#view_profile', as: 'view_profile'
-
+  get 'upvote/:id', to: 'homes#upvote', as: 'upvote'
+  get 'follow_user/:id', to: 'homes#follow_user', as:'follow_user'
+  get 'follow_topic/:id', to: 'homes#follow_topic', as:'follow_topic'
   resources :sessions, only: [:new, :create, :destroy]
 
-  resource :home, only: [:show] do
-    collection do
-      get 'main'
+  resource :home, only: [:show]
+
+  resources :topics, only: [:show]
+
+  resources :questions, only: [:show, :new, :create] do
+    resources :seeks, only: [:new, :create]
+    resources :answers, only: [:new, :create] do
+      resources :comments, only: [:new, :create]
     end
   end
 
-  #resources :topics
-
+  resources :profiles, only: [:show, :edit, :update]
 end

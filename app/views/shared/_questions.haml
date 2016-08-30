@@ -1,0 +1,66 @@
+- @questions.each do |question|
+  %h6.blacktext.italictext
+    (
+    = question.topic.name
+    )
+  %h4.text-left{:style => "display:inline-block"}
+    %a.red{:href => question_path(:id => question.id) }
+      %span.redtext
+        %span.q> Q &nbsp;
+        = question.text
+    %a.btn.btn-default{:href => new_question_answer_path(question.id), :role => "button"}
+      %span.answertext Write Answer
+    %span.blacktext Asked by
+    %span.blacktext.italictext{:style => "display:inline-block"}
+      %a.black{:href => profile_path(:id => question.user.id)}= question.user.name
+    .btn-group{:style => "display:inline-block"}
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+        %span.fa.fa-angle-double-down.blackext
+      %ul.dropdown-menu{:role => "menu"}
+        %li
+          %a{:href => new_question_seek_path(question.id)}
+            %span.answertext Seek Answer
+        %li
+          %a{:href => follow_topic_path(question.topic.id)}
+            %span.bluetext Follow Topic
+  %br
+    - question.answers.each do |answer|
+      %a.btn.btn-default{:href => upvote_path(:id => answer.id), :role => "button"}
+        %span.bluetext Upvotes:
+        %span.bluetext= answer.upvotes
+      %h5.blacktext{:style => "display:inline-block"}
+        Answer by
+        %span.italictext
+          %a.blacktext.italictext{:href => profile_path(:id => answer.user.id)}= answer.user.name
+        .btn-group{:style => "display:inline-block"}
+          %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+            %span.fa.fa-angle-double-down.blackext
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => follow_user_path(answer.user.id)}
+                %span.bluetext Follow User
+            %li
+              %a{:href => new_question_answer_comment_path(question.id,answer.id)}
+                %span.comment Comment
+      %h5.answertext
+        %span.q> A &nbsp;
+        = answer.text
+        %img.img-responsive{:src => answer.image_url }/
+        .col-xs-12
+          - answer.comments.each do |comment|
+            .col-xs-2
+            .col-xs-10.commentsection{:style => "margin-bottom:5px;"}
+              %h5.blacktext{:style => "display:inline-block"}
+                Reply by
+                %span.italictext
+                  %a.blacktext.italictext{:href => profile_path(:id => comment.user.id)}= comment.user.name
+                .btn-group{:style => "display:inline-block"}
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                    %span.fa.fa-angle-double-down.blackext
+                  %ul.dropdown-menu{:role => "menu"}
+                    %li
+                      %a{:href => follow_user_path(comment.user.id)}
+                        %span.bluetext Follow User
+              %h5.comment= comment.text
+      %hr.style1.center-block1/
+  %hr.style2.center-block{:style => "color:red"}/

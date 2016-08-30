@@ -1,0 +1,19 @@
+= render 'shared/html_headers'
+%body
+  .whitebg.container-fluid
+    .row.nopadding
+      = render 'shared/header_home'
+      .col-xs-12.whitebg
+        .col-xs-2.bluetext
+          = render 'shared/topics_home'
+        .col-xs-8.bluetext
+          %h3.bluetext
+            %b Questions
+            %br
+            %a.btn.btn-default{:href => new_question_path, :role => "button"}
+              %span.redtext Ask a Question ?
+            = yield
+        .col-xs-2.bluetext
+          %h3.bluetext
+            %b Notifications
+            = render 'shared/notifications'
